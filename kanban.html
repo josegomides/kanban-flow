@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Flow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <h1>Kanban Flow</h1>
+    </header>
+
+    <main class="quadro">
+        <section class="coluna" aria-labelledby="titulo-a-fazer">
+            <h2 id="titulo-a-fazer">A Fazer</h2>
+            <ul class="lista-cartoes" data-coluna="a-fazer">
+                <li class="cartao">
+                    <h3>Exemplo de tarefa</h3>
+                    <p>Descrição breve da tarefa.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="coluna" aria-labelledby="titulo-em-andamento">
+            <h2 id="titulo-em-andamento">Em Andamento</h2>
+            <ul class="lista-cartoes" data-coluna="em-andamento"></ul>
+        </section>
+
+        <section class="coluna" aria-labelledby="titulo-concluido">
+            <h2 id="titulo-concluido">Concluído</h2>
+            <ul class="lista-cartoes" data-coluna="concluido"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
