@@ -1,75 +1,105 @@
-* {
-    box-sizing: border-box;
+/* Aplica box-sizing previsível para facilitar o cálculo das dimensões. */
+* { box-sizing: border-box; }
+
+/* Define cores, fonte e plano de fundo padrão da aplicação. */
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1d2b3a;
+  background: #f5f7fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --azul: #2857c5;
+  --texto-suave: #68778a;
+  --borda: #e4e9f0;
 }
 
-body {
-    margin: 0;
-    font-family: system-ui, sans-serif;
-    background: #f4f5f7;
-    color: #172b4d;
-}
+/* Remove a margem padrão e define uma largura mínima para o conteúdo. */
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
 
-.cabecalho {
-    padding: 1rem 1.5rem;
-    background: #0052cc;
-    color: #fff;
-}
+/* Faixa superior azul que apresenta a identidade do protótipo. */
+.topo { background: #173a78; color: #fff; padding: 28px max(24px, calc((100% - 1240px) / 2)); }
+.topo__conteudo { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.topo h1 { margin: 2px 0 5px; font-size: 27px; letter-spacing: -.5px; }
+.topo__descricao { margin: 0; color: #d2def1; font-size: 14px; }
+.sobrelinha { margin: 0; color: #bfd0ef; font-size: 10px; font-weight: 800; letter-spacing: 1.2px; }
+.sobrelinha--escura { color: #74839a; }
+.selo { border: 1px solid #6c86b5; border-radius: 999px; padding: 7px 11px; color: #e3ebfa; font-size: 11px; white-space: nowrap; }
 
-.cabecalho h1 {
-    margin: 0;
-    font-size: 1.4rem;
-}
+/* Limita a largura principal e centraliza o conteúdo em telas grandes. */
+.conteudo { width: min(1240px, 100%); margin: 0 auto; padding: 28px 24px 48px; }
+.painel-grupo { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding: 20px 22px; background: #fff; border: 1px solid var(--borda); border-radius: 12px; }
+.painel-grupo h2 { margin: 5px 0; font-size: 20px; }
+.painel-grupo p:last-child { margin: 0; color: var(--texto-suave); font-size: 13px; }
+.campo-grupo { display: grid; gap: 6px; min-width: 220px; color: var(--texto-suave); font-size: 11px; font-weight: 700; }
+.campo-grupo select, .campo input, .campo textarea { width: 100%; border: 1px solid #d7dee8; border-radius: 7px; background: #fff; color: #25354a; padding: 10px 11px; outline: none; }
+.campo-grupo select:focus, .campo input:focus, .campo textarea:focus { border-color: #6b91eb; box-shadow: 0 0 0 3px #e7eeff; }
 
-.quadro {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    padding: 1.5rem;
-    align-items: start;
-}
+/* Mostra números resumidos e mantém a ação principal em destaque. */
+.resumo { display: flex; align-items: center; gap: 26px; margin: 18px 0; padding: 15px 20px; background: #fff; border: 1px solid var(--borda); border-radius: 12px; }
+.resumo__item { display: grid; gap: 2px; color: var(--texto-suave); font-size: 11px; }
+.resumo__numero { color: #25354a; font-size: 18px; font-weight: 750; }
+.botao { border: 0; border-radius: 7px; padding: 10px 15px; font-size: 12px; font-weight: 750; transition: transform .15s, background .15s; }
+.botao:hover { transform: translateY(-1px); }
+.botao--primario { margin-left: auto; background: var(--azul); color: #fff; }
+.botao--primario:hover { background: #1e46a7; }
+.botao--secundario { background: #eef1f6; color: #425168; }
 
-.coluna {
-    background: #ebecf0;
-    border-radius: 8px;
-    padding: 0.75rem;
-    min-height: 200px;
-}
+/* As três colunas formam o quadro e empilham-se em telas menores. */
+.quadro { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 15px; }
+.coluna { min-height: 300px; padding: 14px; border: 1px solid var(--borda); border-radius: 11px; background: #eef1f5; }
+.coluna__cabecalho { display: flex; align-items: center; gap: 8px; margin: 2px 2px 13px; }
+.coluna__cabecalho h2 { margin: 0; font-size: 13px; font-weight: 750; }
+.indicador { width: 8px; height: 8px; border-radius: 50%; background: #8a97a8; }
+.coluna--andamento .indicador { background: #df9c2e; }
+.coluna--concluido .indicador { background: #38a878; }
+.contador { display: grid; place-items: center; min-width: 21px; height: 21px; margin-left: auto; border-radius: 7px; background: #fff; color: #637186; font-size: 10px; font-weight: 750; }
+.lista-cartoes { display: grid; gap: 9px; min-height: 220px; margin: 0; padding: 0; list-style: none; }
+.cartao { padding: 13px; border: 1px solid #e6eaf0; border-radius: 9px; background: #fff; box-shadow: 0 2px 5px #2636500b; }
+.cartao h3 { margin: 0 0 6px; color: #26364b; font-size: 13px; line-height: 1.4; }
+.cartao__descricao { margin: 0 0 11px; color: var(--texto-suave); font-size: 11px; line-height: 1.5; white-space: pre-wrap; }
+.cartao__detalhes { display: flex; flex-wrap: wrap; gap: 7px 12px; padding-top: 9px; border-top: 1px solid #edf0f4; color: #64748a; font-size: 10px; }
+.cartao__responsavel::before { content: "Responsável: "; color: #8b97a8; }
+.cartao__prazo::before { content: "Prazo: "; color: #8b97a8; }
+.cartao__prazo--atrasado { color: #ba4949; font-weight: 700; }
+.cartao__rodape { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 11px; }
+.cartao__status { max-width: 100%; padding: 6px 7px; border: 1px solid #e1e6ee; border-radius: 6px; background: #f8f9fb; color: #526177; font-size: 10px; }
+.cartao__excluir { border: 0; background: transparent; color: #8995a6; font-size: 11px; }
+.cartao__excluir:hover { color: #b33838; text-decoration: underline; }
+.estado-vazio { padding: 18px 10px; border: 1px dashed #cbd3df; border-radius: 8px; color: #7c899b; font-size: 11px; line-height: 1.5; text-align: center; }
 
-.coluna h2 {
-    font-size: 1rem;
-    margin: 0 0 0.75rem;
-}
+/* Aparência da janela do formulário de criação de tarefa. */
+.janela { width: min(520px, calc(100% - 30px)); max-height: calc(100% - 30px); padding: 0; overflow: auto; border: 0; border-radius: 13px; box-shadow: 0 20px 70px #12213b40; }
+.janela::backdrop { background: #10213b80; backdrop-filter: blur(2px); }
+.formulario { display: grid; gap: 16px; padding: 23px; }
+.formulario__topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.formulario__topo h2 { margin: 4px 0 0; font-size: 20px; }
+.botao-fechar { width: 32px; height: 32px; border: 0; border-radius: 7px; background: #f0f2f6; color: #59677b; font-size: 22px; }
+.campo { display: grid; gap: 7px; color: #4f5e73; font-size: 11px; font-weight: 750; }
+.campo > span { display: none; }
+.campo:has(input[required]) > span { display: inline; color: #c24b4b; }
+.campo textarea { resize: vertical; }
+.formulario__linha { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.formulario__acoes { display: flex; justify-content: end; gap: 8px; padding-top: 4px; }
 
-.lista-cartoes {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    min-height: 60px;
+/* Ajustes para telas estreitas, sem remover funcionalidades. */
+@media (max-width: 760px) {
+  .topo { padding: 22px 18px; }
+  .conteudo { padding: 18px 14px 34px; }
+  .painel-grupo { align-items: stretch; flex-direction: column; gap: 16px; padding: 17px; }
+  .campo-grupo { min-width: 0; }
+  .resumo { flex-wrap: wrap; gap: 14px 20px; padding: 14px; }
+  .resumo .botao { width: 100%; margin: 2px 0 0; }
+  .quadro { grid-template-columns: 1fr; }
+  .coluna { min-height: 180px; }
+  .lista-cartoes { min-height: 85px; }
 }
-
-.cartao {
-    background: #fff;
-    border-radius: 6px;
-    padding: 0.75rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.cartao h3 {
-    font-size: 0.95rem;
-    margin: 0 0 0.25rem;
-}
-
-.cartao p {
-    font-size: 0.85rem;
-    margin: 0;
-    color: #5e6c84;
-}
-
-@media (max-width: 800px) {
-    .quadro {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 430px) {
+  .topo__conteudo { align-items: start; }
+  .selo { padding: 6px 8px; font-size: 9px; }
+  .topo__descricao { max-width: 250px; line-height: 1.4; }
+  .formulario { padding: 18px; }
+  .formulario__linha { grid-template-columns: 1fr; }
 }

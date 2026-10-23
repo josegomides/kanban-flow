@@ -1,41 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanban Flow</title>
-    <link rel="stylesheet" href="style.css">
+  <!-- Define a codificação para exibir corretamente acentos e outros caracteres. -->
+  <meta charset="utf-8">
+  <!-- Faz o layout se adaptar à largura de celulares e tablets. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Mostra o nome do projeto na aba do navegador. -->
+  <title>Kanban Flow — trabalhos em grupo</title>
+  <!-- Carrega os estilos visuais que estão no arquivo separado. -->
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header class="cabecalho">
+  <!-- Cabeçalho principal com o nome e o objetivo do quadro. -->
+  <header class="topo">
+    <div class="topo__conteudo">
+      <div>
+        <p class="sobrelinha">ORGANIZAÇÃO DE TRABALHOS</p>
         <h1>Kanban Flow</h1>
-    </header>
+        <p class="topo__descricao">Planeje as etapas do trabalho e acompanhe as entregas do grupo.</p>
+      </div>
+      <span class="selo">Protótipo inicial</span>
+    </div>
+  </header>
 
-    <main class="quadro">
-        <section class="coluna" aria-labelledby="titulo-a-fazer">
-            <h2 id="titulo-a-fazer">A Fazer</h2>
-            <ul class="lista-cartoes" data-coluna="a-fazer">
-                <li class="cartao">
-                    <h3>Exemplo de tarefa</h3>
-                    <p>Descrição breve da tarefa.</p>
-                </li>
-            </ul>
-        </section>
+  <main class="conteudo">
+    <!-- A barra permite alternar entre os cinco grupos de demonstração. -->
+    <section class="painel-grupo" aria-labelledby="titulo-grupo">
+      <div class="painel-grupo__texto">
+        <p class="sobrelinha sobrelinha--escura">SEU QUADRO</p>
+        <h2 id="titulo-grupo">Trabalho em grupo</h2>
+        <p>Escolha um grupo para consultar e organizar suas tarefas.</p>
+      </div>
+      <label class="campo-grupo" for="seletor-grupo">
+        <span>Grupo selecionado</span>
+        <select id="seletor-grupo" aria-label="Escolher grupo"></select>
+      </label>
+    </section>
 
-        <section class="coluna" aria-labelledby="titulo-em-andamento">
-            <h2 id="titulo-em-andamento">Em Andamento</h2>
-            <ul class="lista-cartoes" data-coluna="em-andamento"></ul>
-        </section>
+    <!-- O resumo é preenchido pelo JavaScript conforme as tarefas do grupo. -->
+    <section class="resumo" aria-label="Resumo do grupo">
+      <div class="resumo__item"><span class="resumo__numero" id="total-tarefas">0</span><span>tarefas no grupo</span></div>
+      <div class="resumo__item"><span class="resumo__numero" id="tarefas-pendentes">0</span><span>a fazer</span></div>
+      <div class="resumo__item"><span class="resumo__numero" id="tarefas-concluidas">0</span><span>concluídas</span></div>
+      <button class="botao botao--primario" id="abrir-formulario" type="button">+ Nova etapa</button>
+    </section>
 
-        <section class="coluna" aria-labelledby="titulo-concluido">
-            <h2 id="titulo-concluido">Concluído</h2>
-            <ul class="lista-cartoes" data-coluna="concluido"></ul>
-        </section>
-    </main>
+    <!-- O quadro contém as três etapas principais do fluxo de trabalho. -->
+    <section class="quadro" aria-label="Etapas do trabalho">
+      <section class="coluna coluna--fazer" aria-labelledby="titulo-fazer">
+        <div class="coluna__cabecalho"><span class="indicador"></span><h2 id="titulo-fazer">A Fazer</h2><span class="contador" id="contador-fazer">0</span></div>
+        <ul class="lista-cartoes" id="lista-fazer" data-status="fazer"></ul>
+      </section>
+      <section class="coluna coluna--andamento" aria-labelledby="titulo-andamento">
+        <div class="coluna__cabecalho"><span class="indicador"></span><h2 id="titulo-andamento">Em Andamento</h2><span class="contador" id="contador-andamento">0</span></div>
+        <ul class="lista-cartoes" id="lista-andamento" data-status="andamento"></ul>
+      </section>
+      <section class="coluna coluna--concluido" aria-labelledby="titulo-concluido">
+        <div class="coluna__cabecalho"><span class="indicador"></span><h2 id="titulo-concluido">Concluído</h2><span class="contador" id="contador-concluido">0</span></div>
+        <ul class="lista-cartoes" id="lista-concluido" data-status="concluido"></ul>
+      </section>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Formulário acessível para criar uma etapa com pessoa responsável e prazo. -->
+    <dialog class="janela" id="janela-tarefa" aria-labelledby="titulo-formulario">
+      <form id="formulario-tarefa" class="formulario">
+        <div class="formulario__topo">
+          <div><p class="sobrelinha sobrelinha--escura">NOVA ETAPA</p><h2 id="titulo-formulario">Adicionar tarefa</h2></div>
+          <button class="botao-fechar" id="fechar-formulario" type="button" aria-label="Fechar formulário">×</button>
+        </div>
+        <label class="campo" for="titulo-tarefa">Nome da tarefa <span aria-hidden="true">*</span>
+          <input id="titulo-tarefa" name="titulo" type="text" maxlength="70" placeholder="Ex.: Pesquisar fontes confiáveis" required>
+        </label>
+        <label class="campo" for="descricao-tarefa">Descrição
+          <textarea id="descricao-tarefa" name="descricao" rows="3" maxlength="240" placeholder="Explique brevemente o que precisa ser feito"></textarea>
+        </label>
+        <div class="formulario__linha">
+          <label class="campo" for="responsavel-tarefa">Responsável
+            <input id="responsavel-tarefa" name="responsavel" type="text" maxlength="50" placeholder="Nome do aluno">
+          </label>
+          <label class="campo" for="prazo-tarefa">Prazo
+            <input id="prazo-tarefa" name="prazo" type="date">
+          </label>
+        </div>
+        <div class="formulario__acoes">
+          <button class="botao botao--secundario" id="cancelar-formulario" type="button">Cancelar</button>
+          <button class="botao botao--primario" type="submit">Salvar tarefa</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+
+  <!-- Liga a página ao comportamento interativo definido no JavaScript. -->
+  <script src="script.js" defer></script>
 </body>
-
 </html>
