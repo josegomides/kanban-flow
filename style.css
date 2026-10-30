@@ -132,7 +132,8 @@ button { cursor: pointer; }
   .formulario__linha { grid-template-columns: 1fr; }
 }
 input[type="text"],
-textarea {
+textarea,
+select {
   padding: 10px 12px;
   border: 1px solid #d9e0ea;
   border-radius: 8px;
@@ -140,7 +141,8 @@ textarea {
 }
 
 input[type="text"]:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border-color: #7aa7ff;
   box-shadow: 0 0 0 3px #7aa7ff33;
 }

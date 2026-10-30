@@ -21,9 +21,9 @@ const gruposIniciais = Array.from({ length: 5 }, (_, indice) => ({
 
 // Tarefas de exemplo ajudam a entender o funcionamento ao abrir a página.
 const tarefasIniciais = [
-  { id: "exemplo-1", grupoId: "grupo-1", titulo: "Pesquisar fontes confiáveis", descricao: "Encontrar materiais para começar o trabalho.", responsavel: "Ana", prazo: "", status: "fazer" },
-  { id: "exemplo-2", grupoId: "grupo-1", titulo: "Organizar as ideias", descricao: "Separar os pontos principais para a apresentação.", responsavel: "Lucas", prazo: "", status: "andamento" },
-  { id: "exemplo-3", grupoId: "grupo-2", titulo: "Definir as partes do trabalho", descricao: "Combinar as primeiras atividades entre os integrantes.", responsavel: "Marina", prazo: "", status: "fazer" }
+{ id: "exemplo-1", grupoId: "grupo-1", titulo: "Pesquisar fontes confiáveis", descricao: "Encontrar materiais para começar o trabalho.", responsavel: "Ana", prazo: "", prioridade: "media", status: "fazer" },
+{ id: "exemplo-2", grupoId: "grupo-1", titulo: "Organizar as ideias", descricao: "Separar os pontos principais para a apresentação.", responsavel: "Lucas", prazo: "", prioridade: "media", status: "andamento" },
+{ id: "exemplo-3", grupoId: "grupo-2", titulo: "Definir as partes do trabalho", descricao: "Combinar as primeiras atividades entre os integrantes.", responsavel: "Marina", prazo: "", prioridade: "media", status: "fazer" }
 ];
 
 // Carrega dados salvos; se for a primeira visita, usa os exemplos iniciais.
@@ -111,15 +111,24 @@ function criarCartao(tarefa) {
   adicionarTexto(cartao, "h3", tarefa.titulo);
   if (tarefa.descricao) adicionarTexto(cartao, "p", tarefa.descricao, "cartao__descricao");
 
-  // Exibe responsável e prazo somente quando foram informados.
-  if (tarefa.responsavel || tarefa.prazo) {
+  // Exibe responsável, prazo e prioridade somente quando foram informados.
+  if (tarefa.responsavel || tarefa.prazo || tarefa.prioridade) {
     const detalhes = document.createElement("div");
     detalhes.className = "cartao__detalhes";
-    if (tarefa.responsavel) adicionarTexto(detalhes, "span", tarefa.responsavel, "cartao__responsavel");
+
+    if (tarefa.responsavel) {
+      adicionarTexto(detalhes, "span", tarefa.responsavel, "cartao__responsavel");
+    }
+
     if (tarefa.prazo) {
       const prazo = adicionarTexto(detalhes, "span", formatarPrazo(tarefa.prazo), "cartao__prazo");
       if (prazoEstaAtrasado(tarefa)) prazo.classList.add("cartao__prazo--atrasado");
     }
+
+    if (tarefa.prioridade) {
+      adicionarTexto(detalhes, "span", `Prioridade: ${tarefa.prioridade}`, "cartao__prioridade");
+    }
+
     cartao.append(detalhes);
   }
 
@@ -205,16 +214,16 @@ elemento("formulario-tarefa").addEventListener("submit", (evento) => {
   const titulo = String(formulario.get("titulo") ?? "").trim();
   if (!titulo) return;
 
-  dados.tarefas.push({
-    id: globalThis.crypto?.randomUUID?.() ?? `tarefa-${Date.now()}`,
-    grupoId: grupoAtualId,
-    titulo,
-    descricao: String(formulario.get("descricao") ?? "").trim(),
-    responsavel: String(formulario.get("responsavel") ?? "").trim(),
-    prazo: String(formulario.get("prazo") ?? ""),
-    status: "fazer"
-  });
-
+dados.tarefas.push({
+  id: globalThis.crypto?.randomUUID?.() ?? `tarefa-${Date.now()}`,
+  grupoId: grupoAtualId,
+  titulo,
+  descricao: String(formulario.get("descricao") ?? "").trim(),
+  responsavel: String(formulario.get("responsavel") ?? "").trim(),
+  prazo: String(formulario.get("prazo") ?? ""),
+  prioridade: String(formulario.get("prioridade") ?? "media"),
+  status: "fazer"
+});
   salvarDados();
   desenharQuadro();
   fecharFormulario();
