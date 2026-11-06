@@ -1,6 +1,8 @@
 ## Andamento do projeto
 
-O Kanban Flow já conta com um quadro de tarefas, organização por grupos, acompanhamento de prazos e salvamento dos dados no navegador. Também adicionamos a prioridade: agora é possível escolher entre baixa, média e alta, e ver essa informação no cartão.
+O Kanban Flow é feito apenas com HTML e CSS, sem JavaScript. A página tem um quadro de tarefas para cada grupo, com um menu de âncoras para ir até o quadro desejado, e um formulário de nova etapa com validação nativa do navegador. Cada cartão mostra o responsável e a prioridade (baixa, média ou alta).
+
+Como não há JavaScript, as tarefas são escritas diretamente no `kanban.html`: para adicionar, mover ou remover uma tarefa, edite o cartão (`<li class="cartao">`) na coluna certa e atualize os contadores do grupo.
 
 As próximas melhorias estão listadas abaixo. Vamos atualizar o andamento conforme cada uma for desenvolvida e integrada ao projeto.
 
