@@ -533,3 +533,44 @@ button {
     gap: 0;
   }
 }
+
+
+/* ===== Complementos do formulário em card ===== */
+.formulario__introducao {
+  margin: -7px 0 17px;
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+.formulario__aviso {
+  padding: 13px 15px;
+  border: 1px solid #f0d79c;
+  border-left: 4px solid #df9c2e;
+  border-radius: 9px;
+  background: #fff9e9;
+  color: #69542c;
+  font-size: 12px;
+}
+
+.formulario__aviso strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #59451d;
+}
+
+.formulario__aviso p {
+  margin: 0;
+}
+
+.formulario__aviso code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+}
+
+.botao:focus-visible,
+.link-nav:focus-visible {
+  outline: 3px solid var(--azul-foco);
+  outline-offset: 3px;
+}
