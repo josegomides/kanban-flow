@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar — Kanban Flow</title>
+  <link rel="stylesheet" href="login-kanban-flow.css">
+</head>
+<body id="pagina-login">
+  <header id="cabecalho">
+    <div class="logo-area">
+      <p class="sobrelinha">Organização de trabalhos</p>
+      <h1>Kanban Flow</h1>
+      <p class="descricao">Planeje as etapas do trabalho e acompanhe as entregas do grupo.</p>
+    </div>
+    <span class="selo">Protótipo inicial</span>
+  </header>
+
+  <main id="conteudo-principal">
+    <section id="login" class="cartao">
+      <p class="sobrelinha sobrelinha-escura">Bem-vindo de volta</p>
+      <h2>Entrar na sua conta</h2>
+      <p class="cartao-descricao">Use sua matrícula e senha para acessar o quadro.</p>
+
+      <!-- Validação nativa required, minlength e pattern -->
+      <form id="form-login" action="#" method="post">
+
+        <fieldset>
+          <legend>Acesse sua conta</legend>
+
+          <!-- A primeira letra da matrícula define o tipo: A = aluno P = professor -->
+          <p class="campo">
+            <label for="matricula">Matrícula</label>
+            <input
+              type="text"
+              id="matricula"
+              name="matricula"
+              maxlength="7"
+              pattern="[AaPp]\d{6}"
+              title="Use A (aluno) ou P (professor) seguido de 6 números. Ex.: A123456"
+              required
+              placeholder="Ex.: A123456"
+            >
+            <small class="dica">Aluno começa com <strong>A</strong>. Professor começa com <strong>P</strong>.</small>
+          </p>
+
+          <p class="campo">
+            <label for="senha">Senha</label>
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              minlength="8"
+              maxlength="64"
+              required
+              placeholder="Digite sua senha"
+            >
+          </p>
+        </fieldset>
+
+        <button type="submit">Entrar</button>
+      </form>
+
+      <p class="cartao-rodape">Ainda não tem conta? <a href="cadastro-kanban-flow.html">Cadastre-se</a></p>
+    </section>
+  </main>
+
+  <footer id="rodape">
+    <p>© 2026 Kanban Flow · Programação Web I</p>
+  </footer>
+
+</body>
+</html>

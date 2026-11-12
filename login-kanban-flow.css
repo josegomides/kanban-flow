@@ -1,0 +1,223 @@
+/* Variáveis de cor */
+:root {
+  --azul:        #2857c5;   /* cor principal: botões e links */
+  --azul2:       #1e46a7;   /* variação: hover do botão */
+  --azul3:       #6b91eb;   /* variação clara: foco dos campos */
+  --azul-escuro: #173a78;   /* cabeçalho e rodapé */
+  --fundo:       #f4f6fb;   /* fundo da página */
+  --branco:      #ffffff;
+  --tinta:       #1d2b3a;   /* texto principal */
+  --cinza:       #68778a;   /* texto secundário e dicas */
+  --linha:       #d7dee8;   /* bordas e separadores */
+  --claro:       #d2def1;   /* texto claro sobre o azul escuro */
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* A fonte é definida só no body e herdada pelos filhos */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tinta);
+  background-color: var(--fundo);
+}
+
+/* Cabeçalho */
+#cabecalho {
+  background-color: var(--azul-escuro);
+  color: var(--branco);
+  padding: 1.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+#cabecalho h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.descricao {
+  color: var(--claro);
+  font-size: 0.9rem;
+}
+
+/* letter-spacing + text-transform para criar o sobretitulo */
+.sobrelinha {
+  color: var(--claro);
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.sobrelinha-escura {
+  color: var(--cinza);
+}
+
+.selo {
+  border: 1px solid var(--azul3);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  color: var(--claro);
+  font-size: 0.7rem;
+}
+
+/* Cartão central */
+#conteudo-principal {
+  padding: 2.5rem 1rem 3.5rem;
+}
+
+/* max-width + margin */
+.cartao {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  background-color: var(--branco);
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(18, 54, 112, 0.06);
+}
+
+.cartao h2 {
+  font-size: 1.35rem;
+  margin-top: 0.25rem;
+}
+
+.cartao-descricao {
+  color: var(--cinza);
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.cartao-rodape {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--linha);
+  color: var(--cinza);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.cartao-rodape a {
+  color: var(--azul);
+  font-weight: bold;
+}
+
+.cartao-rodape a:hover {
+  color: var(--azul2);
+}
+
+/* Formulário */
+fieldset {
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  padding: 1rem 1.25rem 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+legend {
+  color: var(--azul);
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 0 0.4rem;
+}
+
+.campo {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  color: var(--tinta);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--tinta);
+  background-color: var(--branco);
+}
+
+/* Indicador visual de foco */
+input:focus {
+  outline: 3px solid var(--azul3);
+  border-color: var(--azul);
+}
+
+/* Texto de ajuda embaixo do campo */
+.dica {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--cinza);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Botão de envio transition deixa a troca de cor suave */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--azul);
+  color: var(--branco);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--azul2);
+}
+
+button[type="submit"]:focus {
+  outline: 3px solid var(--azul3);
+}
+
+/* Rodapé */
+#rodape {
+  background-color: var(--azul-escuro);
+  color: var(--claro);
+  text-align: center;
+  padding: 1.25rem 2rem;
+  font-size: 0.8rem;
+}
+
+/* Telas menores */
+@media (max-width: 640px) {
+  #cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  #conteudo-principal {
+    padding: 1.5rem 0.75rem 2.5rem;
+  }
+
+  .cartao {
+    padding: 1.25rem;
+  }
+
+  /* 16px evita que o celular aplique zoom ao tocar no campo */
+  input {
+    font-size: 16px;
+  }
+}

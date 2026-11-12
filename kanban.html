@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Define a codificação para exibir corretamente acentos e outros caracteres. -->
   <meta charset="UTF-8">
-
-
-
-
-  <!-- Faz o layout se adaptar à largura de celulares e tablets. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Mostra o nome do projeto na aba do navegador. -->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kanban Flow | Quadro de trabalhos em grupo</title>
   <meta name="description" content="Organize as tarefas dos grupos de trabalho em um quadro Kanban simples e responsivo.">
-<!-- Carrega os estilos visuais que estão no arquivo separado. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body id="pagina-kanban">
-  <!-- Cabeçalho principal com o nome e o objetivo do quadro. -->
   <a class="pular" href="#quadro">Pular para o quadro</a>
   <header id="cabecalho" class="topo">
     <div class="abertura">
@@ -34,7 +25,6 @@
 
   <main class="conteudo">
     <nav id="menu-principal" aria-label="Menu principal">
-      <!-- O ativo é estático: não acompanha as âncoras sem JavaScript. -->
       <a class="link-nav ativo" href="#visao-geral">Visão geral</a>
       <a class="link-nav" href="#equipes">Equipes</a>
       <a class="link-nav" href="#quadro">Quadro</a>
@@ -80,7 +70,7 @@
           <input type="radio" id="filtro-5" name="filtro-grupo" value="grupo-5"><label for="filtro-5">Grupo 5 <span class="quantidade">0<span class="so-leitor"> tarefas</span></span></label>
         </div>
       </fieldset>
-    <!-- Menu com âncoras internas: cada link leva até o quadro de um grupo. -->
+    <!-- cada link leva até o quadro de um grupo. -->
     <section id="grupos" class="painel-grupo">
       <div>
         <p class="sobrelinha escura">SEU QUADRO</p>
@@ -98,7 +88,7 @@
       </nav>
     </section>
 
-    <!-- ===================== GRUPO 1 ===================== -->
+    <!--  GRUPO 1  -->
     <section id="grupo-1" class="grupo">
       <h2>Grupo 1</h2>
       <fieldset class="seletor-coluna">
@@ -119,9 +109,6 @@
         <a href="#nova-tarefa" class="btn principal">+ Nova tarefa</a>
       </div>
 
-      <!-- O quadro contém as três etapas principais do fluxo de trabalho. -->
-      <!-- Radios alteram a posição visual do mesmo cartão no Grid.
-           O HTML e a ordem de leitura não mudam; o estado não é salvo. -->
       <p class="aviso-movimento">Começou a tarefa? Marque “Em Andamento”. Terminou? Escolha “Concluído”. Você pode voltar uma etapa quando precisar. Ao recarregar a página, as tarefas voltam às posições iniciais.</p>
       <div class="quadro movimentavel">
         <section class="coluna fazer" aria-label="Grupo 1: A Fazer">
@@ -177,7 +164,7 @@
       </div>
     </section>
 
-    <!-- ===================== GRUPO 2 ===================== -->
+    <!--  GRUPO 2  -->
     <section id="grupo-2" class="grupo">
       <h2>Grupo 2</h2>
       <fieldset class="seletor-coluna">
@@ -197,8 +184,6 @@
         <a href="#nova-tarefa" class="btn principal">+ Nova tarefa</a>
       </div>
 
-      <!-- Radios alteram a posição visual do mesmo cartão no Grid.
-           O HTML e a ordem de leitura não mudam; o estado não é salvo. -->
       <p class="aviso-movimento">Começou a tarefa? Marque “Em Andamento”. Terminou? Escolha “Concluído”. Você pode voltar uma etapa quando precisar. Ao recarregar a página, as tarefas voltam às posições iniciais.</p>
       <div class="quadro movimentavel">
         <section class="coluna fazer" aria-label="Grupo 2: A Fazer">
@@ -236,7 +221,7 @@
       </div>
     </section>
 
-    <!-- ===================== GRUPO 3 ===================== -->
+    <!--  GRUPO 3  -->
     <section id="grupo-3" class="grupo">
       <h2>Grupo 3</h2>
       <fieldset class="seletor-coluna">
@@ -280,7 +265,7 @@
       </div>
     </section>
 
-    <!-- ===================== GRUPO 4 ===================== -->
+    <!--  GRUPO 4  -->
     <section id="grupo-4" class="grupo">
       <h2>Grupo 4</h2>
       <fieldset class="seletor-coluna">
@@ -324,7 +309,7 @@
       </div>
     </section>
 
-    <!-- ===================== GRUPO 5 ===================== -->
+    <!--  GRUPO 5  -->
     <section id="grupo-5" class="grupo">
       <h2>Grupo 5</h2>
       <fieldset class="seletor-coluna">
@@ -411,7 +396,7 @@
             <small id="responsavel-tarefa-dica" class="dica">De 2 a 70 caracteres.</small>
             <p id="responsavel-tarefa-erro" class="erro">Confira a quantidade de caracteres indicada abaixo do campo.</p>
           </div>
-<!-- Data mínima fixa em 11/11/2026; sem JS não acompanha o dia atual. Atualize manualmente. -->
+<!-- Data mínima fixa em 11/11/2026 -->
           <div class="campo">
             <label for="prazo-tarefa">Prazo <span class="obrigatorio" aria-hidden="true">*</span></label>
             <input id="prazo-tarefa" name="prazo" required aria-describedby="prazo-tarefa-dica prazo-tarefa-erro" type="date" min="2026-11-11">
@@ -460,7 +445,7 @@
             <small id="integrantes-grupo-dica" class="dica">De 3 a 150 caracteres.</small>
             <p id="integrantes-grupo-erro" class="erro">Confira a quantidade de caracteres indicada abaixo do campo.</p>
           </div>
-<!-- Data mínima fixa em 11/11/2026; sem JS não acompanha o dia atual. Atualize manualmente. -->
+<!-- Data mínima fixa em 11/11/2026 -->
           <div class="campo">
             <label for="entrega-grupo">Data limite de entrega <span class="obrigatorio" aria-hidden="true">*</span></label>
             <input id="entrega-grupo" name="entrega" required aria-describedby="entrega-grupo-dica entrega-grupo-erro" type="date" min="2026-11-11">
@@ -476,7 +461,7 @@
       </form>
     </div>
   </section>
-  <!-- :target exibe o card da âncora após GET. Abrir a âncora diretamente também o exibe; não comprova validação nem persistência. -->
+
   <section id="tarefa-validada" class="secao confirmacao" tabindex="-1" aria-label="Confirmação da tarefa">
     <div class="modal">
       <h2 id="tarefa-resultado">Dados válidos — não gravado, protótipo estático</h2>

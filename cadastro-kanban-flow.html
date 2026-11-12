@@ -1,63 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanban Flow - Cadastro</title>
-    <link rel="stylesheet" href="cadastro-kanban-flow.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro — Kanban Flow</title>
+  <link rel="stylesheet" href="cadastro-kanban-flow.css">
 </head>
-<body>
-    <header class="topo">
-    <div class="topo-conteudo">
-      <div>
-        <p class="sobrelinha">ORGANIZAÇÃO DE TRABALHOS</p>
-        <h1>Kanban Flow</h1>
-        <p class="topo__descricao">Planeje as etapas do trabalho e acompanhe as entregas do grupo.</p>
-      </div>
-      <span class="selo">Protótipo inicial</span>
+<body id="pagina-cadastro">
+  <header id="cabecalho">
+    <div class="logo-area">
+      <p class="sobrelinha">Organização de trabalhos</p>
+      <h1>Kanban Flow</h1>
+      <p class="descricao">Planeje as etapas do trabalho e acompanhe as entregas do grupo.</p>
     </div>
+    <span class="selo">Protótipo inicial</span>
   </header>
 
-  <main class="acesso">
-    <section class="cartao-acesso" aria-labelledby="titulo-cadastro">
-      <p class="sobrelinha sobrelinha--escura">NOVA CONTA</p>
-      <h2 id="titulo-cadastro">Cadastro de estudante</h2>
-      <p class="cartao-acesso__descricao">Preencha seus dados para acessar os quadros do seu grupo.</p>
+  <main id="conteudo-principal">
+    <section id="cadastro" class="cartao">
+      <p class="sobrelinha sobrelinha-escura">Nova conta</p>
+      <h2>Criar conta</h2>
+      <p class="cartao-descricao">A matrícula indica se você é <strong>aluno</strong> ou <strong>professor</strong>.</p>
 
-      <form class="formulario-acesso" action="#" method="post">
-        <div class="campo">
-          <label for="cadastro-nome">Nome completo <span class="obrigatorio" aria-hidden="true">*</span></label>
-          <input id="cadastro-nome" name="nome" type="text" autocomplete="name"
-                 minlength="3" maxlength="60" pattern="[A-Za-zÀ-ÖØ-öø-ÿ' \-]{3,60}"
-                 title="Use pelo menos 3 letras. São permitidos espaços, apóstrofo e hífen."
-                 placeholder="Ex.: Mateus Martins" required aria-describedby="erro-nome">
-          <p class="campo__erro" id="erro-nome">Informe seu nome com pelo menos 3 letras, sem números.</p>
-        </div>
 
-        <div class="campo">
-          <label for="cadastro-email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
-          <input id="cadastro-email" name="email" type="email" autocomplete="email" maxlength="100"
-                 pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
-                 title="Digite um e-mail válido, como nome@exemplo.com."
-                 placeholder="seuemail@exemplo.com" required aria-describedby="erro-email">
-          <p class="campo__erro" id="erro-email">Digite um e-mail válido, como nome@exemplo.com.</p>
-        </div>
+      <form id="form-cadastro" action="login-kanban-flow.html" method="get">
 
-        <div class="campo">
-          <label for="cadastro-senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
-          <input id="cadastro-senha" name="senha" type="password" autocomplete="new-password"
-                 minlength="8" maxlength="64" pattern="(?=.*[A-Za-z])(?=.*\d).{8,64}"
-                 title="Use pelo menos 8 caracteres, com letras e números."
-                 placeholder="Mínimo de 8 caracteres" required aria-describedby="dica-senha erro-senha">
-          <p class="campo__dica" id="dica-senha">Use pelo menos 8 caracteres, com letras e números.</p>
-          <p class="campo__erro" id="erro-senha">A senha precisa ter 8 caracteres ou mais, com letras e números.</p>
-        </div>
+        <fieldset>
+          <legend>Dados pessoais</legend>
 
-        <button class="botao botao--primario botao--largo" type="submit">Cadastrar</button>
+          <p class="campo">
+            <label for="nome">Nome completo</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              minlength="3"
+              maxlength="60"
+              required
+              placeholder="Ex.: Maria Souza"
+            >
+          </p>
+
+          <p class="campo">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              maxlength="100"
+              required
+              placeholder="seuemail@exemplo.com"
+            >
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Dados de acesso</legend>
+
+          <!-- A primeira letra da matrícula define o tipo: A = aluno P = professor -->
+          <p class="campo">
+            <label for="matricula">Matrícula</label>
+            <input
+              type="text"
+              id="matricula"
+              name="matricula"
+              maxlength="7"
+              pattern="[AaPp]\d{6}"
+              title="Use A (aluno) ou P (professor) seguido de 6 números. Ex.: A123456"
+              required
+              placeholder="Ex.: A123456"
+            >
+            <small class="dica">Aluno: <strong>A</strong> + 6 números (A123456). Professor: <strong>P</strong> + 6 números (P123456).</small>
+          </p>
+
+          <p class="campo">
+            <label for="senha">Senha</label>
+            <!-- Sem o atributo name, a senha é validada mas não é enviada,
+                 então ela não aparece no endereço da página (method="get"). -->
+            <input
+              type="password"
+              id="senha"
+              minlength="8"
+              maxlength="64"
+              required
+              placeholder="Mínimo de 8 caracteres"
+            >
+            <small class="dica">Use pelo menos 8 caracteres.</small>
+          </p>
+        </fieldset>
+
+        <button type="submit">Cadastrar</button>
       </form>
 
-      <p class="cartao-acesso__rodape">Já tem uma conta? <a href="login.html">Entrar</a></p>
+      <p class="cartao-rodape">Já tem uma conta? <a href="login-kanban-flow.html">Entrar</a></p>
     </section>
   </main>
+
+  <footer id="rodape">
+    <p>© 2026 Kanban Flow · Programação Web I</p>
+  </footer>
+
 </body>
 </html>
